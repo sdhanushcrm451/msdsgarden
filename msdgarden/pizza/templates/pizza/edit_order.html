@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Edit a Pizza</h1>
+<h2>{{note}}</h2>
+<form action="{% url 'edit_order' pizza.id %}" method="post">
+    {% csrf_token %}
+    <!-- CSRF - Cross Site Request Forgery -->
+    {{ pizzaform }}  <!-- Change from 'PizzaForm' to 'pizzaform' to match context variable -->
+    <input type="submit" id="submit" value="Edit Pizza" class="btn btn-secondary">
+</form>
+{% endblock %}

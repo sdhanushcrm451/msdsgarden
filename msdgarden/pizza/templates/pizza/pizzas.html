@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="my-5">Order Your Pizzas</h1>
+
+{% if note %}
+    <p>{{ note }}</p>
+{% endif %}
+
+<form action="{% url 'pizzas' %}" method="post">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    {% for form in formset %}
+        <div>
+            {{ form.size.label }} {{ form.size }}
+            {{ form.topping1.label }} {{ form.topping1 }}
+            {{ form.topping2.label }} {{ form.topping2 }}
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-secondary">Order Pizzas</button>
+</form>
+{% endblock %}

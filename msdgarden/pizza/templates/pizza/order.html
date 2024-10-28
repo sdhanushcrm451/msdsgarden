@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{%block content%}
+<h1 class="my-5">Order a Pizza</h1>
+<h2 class="my-4">{{note}}</h2>
+{% if created_pizza_pk %}
+<a href="{%url 'edit_order' created_pizza_pk %}">Edit ur order</a>
+{%endif%}
+<form  action="{% url 'order' %}" method="post">{% csrf_token %}
+  <!-- CSRF - Cross Site Request Forgery -->
+{{PizzaForm.as_p}}
+  <input type="submit" id="submit" value="Order Pizza" class="btn btn-secondary">
+</form>
+<br><Br>
+
+  Want more than one pizza ?
+
+  <form action="{% url 'pizzas'%}" method="get">
+{{multiple_form}}
+<input type="submit" name="" value="Get pizzas" class="btn btn-danger">
+  </form>
+{% endblock %}
